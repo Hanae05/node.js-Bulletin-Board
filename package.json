@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^3.0.1"
+    "ejs": "^3.0.1",
+    "log4js": "^6.1.2"
   }
 }

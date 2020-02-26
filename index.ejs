@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta http-equiv="content-tye" content="text/html; charset=UTF-8">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <title>ミニ掲示板</title>
         <link type="text/css" href="./style.css" rel="stylesheet">
         <script>
@@ -29,9 +29,9 @@
                 <input type="submit" value="送信"></p>
             </form>
             <hr>
-            <p><table style="width: 85%;">
+            <p><table style="width:85%;">
                 <% for(var i in data) { %>
-                    <%- include('data_item', {val:data[i]});
+                    <%- include('data_item', {val:data[i]}); %>
                 <%  } %>            
             </table></p>
         </div>

@@ -1,3 +1,11 @@
+const log4js = require('log4js')
+const logger = log4js.getLogger();
+logger.level = 'debug';
+
+logger.debug('Hello world!');
+
+
+
 const http = require('http');
 const fs = require('fs');
 const ejs = require('ejs');
@@ -15,7 +23,7 @@ readFromFile(filename);
 
 var server = http.createServer(getFromClient);
 
-server.listenerCount(3000);
+server.listen(3000);
 console.log('Server start!');
 
 //ここまでメインプログラム＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -27,7 +35,7 @@ function getFromClient(request, response) {
     switch(url_parts.pathname) {
 
         case '/': //トップページ（掲示板）
-            response_index(request, respones);
+            response_index(request, response);
             break;
         
         case '/login': //ログインページ
@@ -36,7 +44,7 @@ function getFromClient(request, response) {
 
         case '/style.css':
             response.writeHead(200, {'Content-Type': 'text/css'});
-            respone.write(style_css);
+            response.write(style_css);
             response.end();
             break;
 
@@ -55,6 +63,7 @@ function response_login(request, response) {
     response.end();
 }
 
+logger.debug('Hello world!2');
 
 //indexのアクセス処理
 function response_index(request, response) {
@@ -64,6 +73,10 @@ function response_index(request, response) {
 
         //データ受信時のイベント処理
         request.on('data', function(data) {
+            body +=data;
+        });
+
+        request.on('end', function() {
             data = qs.parse(body);
             addToData(data.id, data.msg, filename, request);
             write_index(request, response);
@@ -86,6 +99,8 @@ function write_index(request, response) {
     response.write(content);
     response.end();
 }
+
+logger.debug('Hello world!3');
 
 //テキストファイルダウンロード
 function readFromFile(fname) {
