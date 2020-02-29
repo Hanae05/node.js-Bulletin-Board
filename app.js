@@ -1,3 +1,4 @@
+//デバッグ
 const log4js = require('log4js')
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -5,7 +6,7 @@ logger.level = 'debug';
 logger.debug('Hello world!');
 
 
-
+//スタート
 const http = require('http');
 const fs = require('fs');
 const ejs = require('ejs');
@@ -16,8 +17,13 @@ const index_page = fs.readFileSync('./index.ejs', 'utf-8');
 const login_page = fs.readFileSync('./login.ejs', 'utf-8');
 const style_css = fs.readFileSync('./style.css', 'utf-8');
 
+//画面に表示される最大個数
 const max_num = 10;
+
+//送信されたデータが入る
 const filename = 'mydata.txt';
+
+//filenameの中身 グローバル関数にするためにここで指定している
 var message_data;
 readFromFile(filename);
 
@@ -77,7 +83,9 @@ function response_index(request, response) {
         });
 
         request.on('end', function() {
+            //console.log(body);
             data = qs.parse(body);
+            //console.log(data);
             addToData(data.id, data.msg, filename, request);
             write_index(request, response);
         });
@@ -105,7 +113,9 @@ logger.debug('Hello world!3');
 //テキストファイルダウンロード
 function readFromFile(fname) {
     fs.readFile(fname, 'utf8', (err, data) => {
+        console.log(data);
         message_data = data.split('\n');
+        console.log(message_data);
     })
 }
 
@@ -115,6 +125,7 @@ function addToData(id, msg, fname, request) {
     var obj_str = JSON.stringify(obj);
     console.log('add data:' + obj_str);
     message_data.unshift(obj_str);
+    console.log(message_data); 
     if (message_data.length > max_num) {
         message_data.pop();
     }
@@ -124,6 +135,7 @@ function addToData(id, msg, fname, request) {
 //データを保存
 function saveToFile(fname) {
     var data_str = message_data.join('\n');
+    console.log(data_str);
     fs.writeFile(fname, data_str, (err) => {
         if (err) { throw err; }
     });
