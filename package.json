@@ -1,15 +1,25 @@
 {
-  "name": "mini_board-copy",
+  "name": "mini_board",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "now dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.0.1",
-    "log4js": "^6.1.2"
-  }
+    "log4js": "^6.1.2",
+    "npm": "^6.14.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hanae05/node.js-Bulletin-Board-2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Hanae05/node.js-Bulletin-Board-2/issues"
+  },
+  "homepage": "https://github.com/Hanae05/node.js-Bulletin-Board-2#readme",
+  "description": ""
 }
